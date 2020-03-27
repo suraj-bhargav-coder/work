@@ -1,178 +1,287 @@
-﻿using Hospita.Models;
-using System;
+﻿using System;
+using ToyCompany.Models;
 
-namespace Hospita
+namespace ToyCompany
 {
     class Program
     {
-        HospitaContext hospi = new HospitaContext();
         static void Main(string[] args)
         {
-            Program obj = new Program();
+            Console.WriteLine("Welcome to the portal");
 
 
-            Console.WriteLine("Welcome to the application");
-            while (true)
+            Program p = new Program();
+            int choice;
+            string Name, Password;
+            using (var toyapp = new ToyContext())
             {
+                do
+                {
+                    Console.WriteLine("Choose Option as \n\n 1. Compoany Admin \n 2. Customer\n 3. Exit ");
+                    
+                    choice = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("\n\nSelect what you want to do from the options \n(1) Add Department\n(2) Add Doctor \n(3) Add Patetient\n(4) Appointment\n(5) Treatment \n(6) Exit ");
-                int choice = Convert.ToInt32(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.WriteLine("Enter  Name:");
+                            Name = Console.ReadLine();
+                            Console.WriteLine("Enter Password");
+                            Password = Console.ReadLine();
+                            if (Name == "admin" && Password == "admin")
+                            {
+                                p.Admin();
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Cridentials");
+                                break;
+                            }
+
+                        case 2:
+                           p.Customer();
+                            break;
+                        case 3:
+                            Console.WriteLine("Exit");
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Choice");
+                            break;
+                    }
+
+                } while (choice != 3);
+            }
+
+        }
+
+
+
+        public void Admin()
+        {
+            int choice;
+            do
+            {
+                Console.WriteLine("1. Add Toy Category \n2. Add Toy\n3. Add Scheme \n4. Exit");
+                Console.WriteLine("Enter Choice: ");
+
+                choice = Convert.ToInt32(Console.ReadLine());
+
                 switch (choice)
                 {
-
                     case 1:
-                        obj.AddDepartment();
+                        AddCategory();
                         break;
-
-
                     case 2:
-                        obj.AddDoctor();
+                       AddToy();
                         break;
-
+                    
                     case 3:
-                        obj.AddPatient();
+                       AddScheme();
                         break;
                     case 4:
-                        obj.Appointment();
+                        Console.WriteLine("Exit");
                         break;
                     default:
+                        Console.WriteLine("Invalid choice");
                         break;
 
-
-
                 }
             }
-
+            while (choice != 4);
 
         }
 
-        void AddDepartment()
+        public void Customer()
         {
-
-            Console.Write("\nEnter Department Name : ");
-            var departmentName = Console.ReadLine();
-            Department department = new Department(departmentName);
-            Console.WriteLine(department.DepartmentName);
-            department.DepartmentName = departmentName;
-            try
+            int choice;
+            do
             {
-                hospi.Departments.Add(department);
-                hospi.SaveChanges();
-                Console.WriteLine("Department Added Successfully");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        void AddDoctor()
-        {
-            Console.Write("\nEnter Doctor Name : ");
-            var doctorName = Console.ReadLine();
-            Console.Write("\nEnter Designation ");
-            var designation = Console.ReadLine();
-            //Console.WriteLine("Enter DepartmentId.");
-            //var departmentId = Convert.ToInt32(Console.ReadLine());
-
-
-            Doctor doctor = new Doctor(doctorName, designation);
-            try
-            {
-                hospi.Doctors.Add(doctor);
-                hospi.SaveChanges();
-                Console.WriteLine("Doctor Added Successfully");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        void AddPatient()
-        {
-            Console.Write("\nEnter Patient Name : ");
-            var patientName = Console.ReadLine();
-
-            Console.WriteLine("Enter Age.");
-            var age = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Enter Contect Number.");
-            var contect = Convert.ToInt32(Console.ReadLine());
-
-            Patient patient = new Patient(patientName, age, contect);
-            try
-            {
-                hospi.Patetients.Add(patient);
-                hospi.SaveChanges();
-                Console.WriteLine(" Added Successfully");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        void Appointment()
-        {
-            Console.WriteLine("enter DepartmentId");
-            int deptId = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("enter DoctorId");
-            int doctorId = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("enter PatientId");
-            int patientId = Convert.ToInt32(Console.ReadLine());
-
-            Appointment appointment = new Appointment(deptId, doctorId, patientId);
-            try
-            {
-                hospi.Appointments.Add(appointment);
-                hospi.SaveChanges();
-                Console.WriteLine(" Added Successfully");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-
-        void Treatment() {
-            Console.WriteLine("Enter  Drug name");
-            string drugName =Console.ReadLine();
-            Console.WriteLine("Enter AppointmantI Id");
-            int appointmentId = Convert.ToInt32(Console.ReadLine());
-            
-            Treatment treatment = new Treatment(drugName ,appointmentId);
-            try
-            {
-                hospi.Treatments.Add(treatment);
-                hospi.SaveChanges();
-                Console.WriteLine(" Added Successfully");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-       /* void PatientList()
-        {
-            var patientList = hospi.Patient;
-            try
-            {
-                foreach (var patient in patientList)
+                Console.WriteLine("\n1. Signup \n2. Login \n3. Exit");
+                Console.WriteLine("Enter Choice: ");
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
                 {
+                    case 1:
+                        Register();
+                        break;
+                    case 2:
+                        Login();
+                        break;
+                    case 3:
+                        Console.WriteLine("Exit");
+                        break;
+                    default:
+                        Console.WriteLine("\nInvalid choice\n");
+                        break;
 
-                    Console.WriteLine(" Patient Id : " + patient.PatientId + "Patient Name : " + patient.PatientName + "Age : " + patient.Age + "Contect : " + patient.Contect);
                 }
             }
-            catch (Exception e)
+            while (choice != 4);
+        }
+
+
+        public void AddCategory()
+        {
+            using (var toyapp = new ToyContext())
             {
-                Console.WriteLine(e);
+                string CategoryName;
+                Console.WriteLine("\nEnter CategoryName :-");
+
+                CategoryName = Console.ReadLine();
+                var category = new Category
+                {
+                    CategoryName = CategoryName,
+                };
+               toyapp.Categories.Add(category);
+                toyapp.SaveChanges();
+
+                Console.WriteLine("\nAdded Successfully\n");
+            }
+
+        }
+
+        void AddToy()
+        {
+            using (var toyapp = new ToyContext())
+            {
+                Console.Write("\nEnter Toy Name : ");
+                var toyName = Console.ReadLine();
+
+                Console.WriteLine("\nWrite Description :-");
+                var description = Console.ReadLine();
+
+                Console.WriteLine("\nEnter Price :-");
+                var price = Convert.ToInt32(Console.ReadLine());
+
+
+                Console.WriteLine("\nEnter category id :-");
+                var catId = Convert.ToInt32(Console.ReadLine());
+
+
+                Toy toy = new Toy(toyName, description,price,catId);
+                try
+                {
+                    toyapp.Toys.Add(toy);
+                    toyapp.SaveChanges();
+                    Console.WriteLine("\nAdded Successfully\n");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
 
-   */
+
+
+
+
+
+        void AddScheme()
+        {
+            using (var toyapp = new ToyContext())
+            {
+                Console.Write("\nEnter Scheme Name :- ");
+                var schemeName = Console.ReadLine();
+
+                Console.WriteLine("\nEnter Description :-");
+                var description = Console.ReadLine();
+
+                Console.WriteLine("\nEnter offeramount :- ");
+                var offer = Convert.ToInt32(Console.ReadLine());
+
+                Scheme scheme= new Scheme(schemeName, description, offer);
+                try
+                {
+                    toyapp.Schemes.Add(scheme);
+                    toyapp.SaveChanges();
+                    Console.WriteLine("\nAdded Successfully\n");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
+
+
+        void Register()
+        {
+            using (var toyapp = new ToyContext())
+            {
+                Console.Write("\nCustomer Name :-");
+                var name = Console.ReadLine();
+
+                Console.WriteLine("\nEnter Email :-");
+                var email = Console.ReadLine();
+
+                Console.WriteLine("\nEnter Mobile Number.");
+                var mobile = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("\nEnter  Password.");
+                var password = Console.ReadLine();
+
+                Customer customer = new Customer(name, email,mobile ,password);
+                try
+                {
+                    toyapp.Costomers.Add(customer);
+                    toyapp.SaveChanges();
+                    Console.WriteLine("\nAdded Successfully\n");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
+
+
+        /*
+        void PlaceOrder()
+        {
+            using (var toyapp = new ToyContext())
+            {
+                Console.Write("\nEnter Toy Name : ");
+                var toyName = Console.ReadLine();
+
+                Console.WriteLine("\nWrite Description :-");
+                var description = Console.ReadLine();
+
+                Console.WriteLine("\nEnter Quantity :-");
+                var qty = Convert.ToInt32(Console.ReadLine());
+
+
+                Console.WriteLine("\nEnter category id :-");
+                var catId = Convert.ToInt32(Console.ReadLine());
+
+
+                Order order = new Order(toyName,, price, catId);
+                try
+                {
+                    toyapp.Toys.Add(toy);
+                    toyapp.SaveChanges();
+                    Console.WriteLine("\nAdded Successfully\n");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
+        */
+
+        void Login()
+        {
+            Console.WriteLine("\nEmail");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("\nEmail Password ");
+            string psssword = Console.ReadLine();
+
+        }
+
+
 
     }
 }
