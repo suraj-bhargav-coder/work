@@ -1,0 +1,13 @@
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\bin\Debug\netcoreapp3.1\FileContaintApp.exe
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\bin\Debug\netcoreapp3.1\FileContaintApp.deps.json
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\bin\Debug\netcoreapp3.1\FileContaintApp.runtimeconfig.json
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\bin\Debug\netcoreapp3.1\FileContaintApp.runtimeconfig.dev.json
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\bin\Debug\netcoreapp3.1\FileContaintApp.dll
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\bin\Debug\netcoreapp3.1\FileContaintApp.pdb
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\obj\Debug\netcoreapp3.1\FileContaintApp.csprojAssemblyReference.cache
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\obj\Debug\netcoreapp3.1\FileContaintApp.csproj.CoreCompileInputs.cache
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\obj\Debug\netcoreapp3.1\FileContaintApp.AssemblyInfoInputs.cache
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\obj\Debug\netcoreapp3.1\FileContaintApp.AssemblyInfo.cs
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\obj\Debug\netcoreapp3.1\FileContaintApp.dll
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\obj\Debug\netcoreapp3.1\FileContaintApp.pdb
+C:\Users\suraj_\source\repos\FileContaintApp\FileContaintApp\obj\Debug\netcoreapp3.1\FileContaintApp.genruntimeconfig.cache
