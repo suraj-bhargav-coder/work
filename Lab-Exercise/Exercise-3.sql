@@ -30,14 +30,14 @@ GO
  )
   
 
-  --Task 
+  --Task 3
   -- Write a script to create a table to store the CampaignResponse data
 create table  DirectMarketing.CampaignResponces(
 
   CampaignId int not null,
   CampaignName nvarchar(50) not null,
   StartDate datetimeoffset(7) NOT NULL,
-  CampainLocatio nvarchar(5) not null,
+  CampainLocation nvarchar(5) not null,
   CampaignLoacation nvarchar(100) not null,
   CampaignDescription nvarchar  ,
   Comments nvarchar
